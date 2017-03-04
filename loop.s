@@ -30,13 +30,13 @@ start_loop:
 	cmpl $0, %eax
 	je loop_exit
 	incl %edi
-	addl $1,%eax
-	movl %eax,(%edx)
-	movl %eax, %ecx
+	addl $1,%eax   #adds 1 to the value in eax
+	movl %eax,(%edx)  
+	movl %eax, %ecx  # saving incremented value in ecx
 	addl $4, %edx	
         movl data_items(,%edi,4), %eax
 	
-	movl %ecx, %ebx
+	movl %ecx, %ebx   # base register now contains the incremented value
 # compare values
 # jump to loop beginning if the new
 # one isn’t bigger

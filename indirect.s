@@ -19,7 +19,7 @@ _start:
 	leal data_items, %ebx
         movl $250, %edx # indirect addressing
         
-        movl %edx, 4(%ebx) # base indirect addressing
+        movl %edx, %ebx # base indirect addressing
 	movl data_items,%ecx
 	addl $8,%ecx
 	

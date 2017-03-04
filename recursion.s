@@ -3,31 +3,31 @@
 .section .text
 
 .globl _start
-.globl factorial
+.globl fact
 
 _start:
-	pushl $4
+	pushl $5
 	
-	call factorial
+	call fact
 	addl $4, %esp
 	movl %eax, %ebx
 	movl $1, %eax
 	int $0x80
 	
-	.type factorial,@function
-	factorial:
+	.type fact,@function
+	fact:
 		pushl %ebp
 		movl %esp,%ebp
 		movl 8(%ebp), %eax
 		cmpl $1, %eax
-		je end_factorial
+		je end_fact
 		decl %eax
 		pushl %eax
-		call factorial
+		call fact           # recursive call
 		movl 8(%ebp), %ebx
 		imull %ebx,%eax
 		
-	end_factorial:
+	end_fact:
 	 movl %ebp,%esp
 	 popl %ebp
 	 ret
